@@ -1,0 +1,63 @@
+{
+  "users": [
+    {
+      "email": "sally@email.com",
+      "password": "check",
+      "name": "Sally Smith",
+      "height": "5'6",
+      "weight": "140",
+      "age": "32",
+      "id": 1
+    }
+  ],
+  "contacts": [
+    {
+      "name": "debby",
+      "phoneNumber": "987-098-0981",
+      "id": 1,
+      "userId": 1
+    }
+  ],
+  "events": [
+    {
+      "userId": 1,
+      "startTime": 1609856500000,
+      "endTime": 1609867865624,
+      "id": 1
+    }
+  ],
+  "eventDrinks": [
+    {
+      "drinkId": 1,
+      "eventId": 1,
+      "timeDrank": 1609867759463,
+      "id": 1
+    },
+    {
+      "drinkId": 1,
+      "eventId": 1,
+      "timeDrank": 1609867774296,
+      "id": 3
+    },
+    {
+      "drinkId": 3,
+      "eventId": 1,
+      "timeDrank": 1609867794835,
+      "id": 4
+    }
+  ],
+  "drinks": [
+    {
+      "id": 1,
+      "type": "Beer"
+    },
+    {
+      "id": 2,
+      "type": "Wine"
+    },
+    {
+      "id": 3,
+      "type": "Liquor"
+    }
+  ]
+}

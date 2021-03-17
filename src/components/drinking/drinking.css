@@ -1,0 +1,91 @@
+.end--drinking--button {
+    background-color: #ce2d05;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.continue--drinking--button{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.results--title{
+    text-align: center;
+    text-decoration: underline;
+}
+
+.alcohol--choice--button{
+    background-color: #0a0a0a;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.can-i-drive-button{
+    background-color: #f1e615;
+    border: none;
+    color: rgb(10, 10, 10);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.edit-drinks-button{
+    background-color: #949097;
+    border: none;
+    color: rgb(10, 10, 10);;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.what-are-you-drinking-title{
+    text-align: center;
+}
+
+.drink-list-title{
+    text-align: center;
+    text-decoration: underline;
+}
+
+.delete-drink-button{
+    background-color: #ce2d05;
+    border: none;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
