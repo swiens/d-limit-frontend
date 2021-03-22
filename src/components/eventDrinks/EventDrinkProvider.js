@@ -8,31 +8,36 @@ export const EventDrinkProvider = (props) => {
   const [drinks, setDrinks] = useState([]);
   const [events, setEvents] = useState([]);
   const [event, setEvent] = useState({});
+  
+  const authToken = localStorage.getItem("lu_token")
 
   const getEventDrinks = (eventId) => {
-    return fetch(`http://localhost:8088/eventDrinks?eventId=${eventId}`)
+    return fetch(`http://localhost:8000/eventDrinks?eventId=${eventId}`)
       .then((res) => res.json())
       .then(setEventDrinks);
   };
   const getEvents = () => {
-    const userId= parseInt(localStorage.getItem("app_user_id"))
-    return fetch(`http://localhost:8088/events?userId=${userId}`)
+    return fetch(`http://localhost:8000/events`, {
+      headers: {
+        Authorization: `Token ${authToken}`
+      }
+    })
       .then((res) => res.json())
       .then(setEvents);
   };
   const getDrinks = () => {
-    return fetch("http://localhost:8088/drinks")
+    return fetch("http://localhost:8000/drinks")
       .then((res) => res.json())
       .then(setDrinks);
   };
   const addEvent = () => {
-    return fetch("http://localhost:8088/events", {
+    return fetch("http://localhost:8000/events", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userId: parseInt(localStorage.getItem("app_user_id")),
+        userId: parseInt(localStorage.getItem("lu_token")),
         startTime: moment.now(),
         endTime: null,
       }),
@@ -44,7 +49,7 @@ export const EventDrinkProvider = (props) => {
     
   };
   const endEvent = (eventId) => {
-    return fetch(`http://localhost:8088/events/${eventId}`, {
+    return fetch(`http://localhost:8000/events/${eventId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -61,13 +66,13 @@ export const EventDrinkProvider = (props) => {
 
   const getEvent = () => {
     const currentEventId = localStorage.getItem("currentEvent")
-    return fetch(`http://localhost:8088/events/${currentEventId}`)
+    return fetch(`http://localhost:8000/events/${currentEventId}`)
         .then(res => res.json())
         .then(setEvent)
 }
 
   const addEventDrink = (drink) => {
-    return fetch("http://localhost:8088/eventDrinks", {
+    return fetch("http://localhost:8000/eventDrinks", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -77,7 +82,7 @@ export const EventDrinkProvider = (props) => {
   };
 
   const deleteEventDrink = (eventDrinkId, eventId) => {
-    return fetch(`http://localhost:8088/eventDrinks/${eventDrinkId}`, {
+    return fetch(`http://localhost:8000/eventDrinks/${eventDrinkId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

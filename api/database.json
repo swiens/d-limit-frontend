@@ -8,6 +8,15 @@
       "weight": "140",
       "age": "32",
       "id": 1
+    },
+    {
+      "email": "susanmichellewiens@gmail.com",
+      "password": "check",
+      "name": "kei Wiens",
+      "height": "5'6",
+      "weight": "130",
+      "age": "32",
+      "id": 2
     }
   ],
   "contacts": [
@@ -16,6 +25,12 @@
       "phoneNumber": "987-098-0981",
       "id": 1,
       "userId": 1
+    },
+    {
+      "name": "kela",
+      "phoneNumber": "879-987-1234",
+      "id": 2,
+      "userId": 2
     }
   ],
   "events": [
@@ -24,6 +39,12 @@
       "startTime": 1609856500000,
       "endTime": 1609867865624,
       "id": 1
+    },
+    {
+      "userId": 2,
+      "startTime": 1615999512331,
+      "endTime": null,
+      "id": 2
     }
   ],
   "eventDrinks": [
@@ -44,6 +65,12 @@
       "eventId": 1,
       "timeDrank": 1609867794835,
       "id": 4
+    },
+    {
+      "drinkId": 3,
+      "eventId": 2,
+      "timeDrank": 1615999515624,
+      "id": 5
     }
   ],
   "drinks": [

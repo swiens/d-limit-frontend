@@ -8,27 +8,30 @@ export const Login = props => {
     const password = useRef()
     const existDialog = useRef()
     const passwordDialog = useRef()
-    
 
-    const existingUserCheck = () => {
-        // If your json-server URL is different, please change it below!
-        return fetch(`http://localhost:8088/users?email=${email.current.value}`)
-            .then(_ => _.json())
-            .then(user => user.length ? user[0] : false)
-    }
+    
 
     const handleLogin = (e) => {
         e.preventDefault()
 
-        existingUserCheck()
-            .then(exists => {
-                if (exists && exists.password === password.current.value) {
-                    // The user id is saved under the key app_user_id in local Storage. Change below if needed!
-                    localStorage.setItem("app_user_id", exists.id)
+        return fetch("http://127.0.0.1:8000/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                username: email.current.value,
+                password: password.current.value
+            })
+        })
+            .then(res => res.json())
+            .then(res => {
+                if ("valid" in res && res.valid && "token" in res) {
+                    localStorage.setItem( "lu_token", res.token )
                     props.history.push("/")
-                } else if (exists && exists.password !== password.current.value) {
-                    passwordDialog.current.showModal()
-                } else if (!exists) {
+                }
+                else {
                     existDialog.current.showModal()
                 }
             })

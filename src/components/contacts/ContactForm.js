@@ -12,9 +12,9 @@ export const ContactForm = (props) => {
     addContact({
       name: name.current.value,
       phoneNumber: phoneNumber.current.value,
-      userId: parseInt(localStorage.getItem("app_user_id"))
+      userId: parseInt(localStorage.getItem("lu_token"))
     })
-      .then(() => props.history.push("/contacts"))
+      .then(() => props.history.push("/"))
   }
   return (
     <main style={{ textAlign: "center" }}>

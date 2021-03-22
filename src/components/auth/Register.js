@@ -13,47 +13,35 @@ export const Register = (props) => {
     const weight = useRef()
     const age = useRef()
 
-    const existingUserCheck = () => {
-        // If your json-server URL is different, please change it below!
-        return fetch(`http://localhost:8088/users?email=${email.current.value}`)
-            .then(_ => _.json())
-            .then(user => !!user.length)
-    }
 
     const handleRegister = (e) => {
         e.preventDefault()
 
         if (password.current.value === verifyPassword.current.value) {
-            existingUserCheck()
-                .then((userExists) => {
-                    if (!userExists) {
-                        // If your json-server URL is different, please change it below!
-                        fetch("http://localhost:8088/users", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify({
-                                email: email.current.value,
-                                password: password.current.value,
-                                name: `${firstName.current.value} ${lastName.current.value}`,
-                                height: height.current.value,
-                                weight: weight.current.value,
-                                age: age.current.value
-                                
-                            })
-                        })
-                            .then(_ => _.json())
-                            .then(createdUser => {
-                                if (createdUser.hasOwnProperty("id")) {
-                                    // The user id is saved under the key app_user_id in local Storage. Change below if needed!
-                                    localStorage.setItem("app_user_id", createdUser.id)
-                                    props.history.push("/create-contact")
-                                }
-                            })
-                    }
-                    else {
-                        conflictDialog.current.showModal()
+            const newUser = {
+                "username": email.current.value,
+                "first_name": firstName.current.value,
+                "last_name": lastName.current.value,
+                "height": height.current.value,
+                "weight": weight.current.value,
+                "age": age.current.value,
+                "email": email.current.value,
+                "password": password.current.value
+            }
+
+            return fetch("http://127.0.0.1:8000/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(newUser)
+            })
+                .then(res => res.json())
+                .then(res => {
+                    if ("token" in res) {
+                        localStorage.setItem("lu_token", res.token)
+                        props.history.push("/create-contact")
                     }
                 })
         } else {
@@ -109,7 +97,7 @@ export const Register = (props) => {
                     <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control" placeholder="Verify password" required />
                 </fieldset>
                 <fieldset>
-                    <button type="submit"> Sign in </button>
+                    <button type="submit"> Register </button>
                 </fieldset>
             </form>
         </main>

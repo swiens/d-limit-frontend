@@ -26,7 +26,7 @@ function App() {
       <Route
         render={() => {
           // The user id is saved under the key app_user_id in local Storage. Change below if needed!
-          if (localStorage.getItem("app_user_id")) {
+          if (localStorage.getItem("lu_token")) {
             return (
               <>
                 

@@ -7,14 +7,15 @@ export const ContactProvider = (props) => {
     const [currentContact, setCurrentContact] = useState([])
 
     const getContacts = () => {
-        const user = parseInt(localStorage.getItem("app_user_id"))
-        return fetch(`http://localhost:8088/contacts?userId=${user}`)
+        const user = parseInt(localStorage.getItem("lu_token"))
+        return fetch(`http://localhost:8000/contacts?userId=${user}`)
             .then(res => res.json())
             .then(setContacts)
     }
+    console.log(getContacts)
 
     const addContact = contact => {
-        return fetch("http://localhost:8088/contacts", {
+        return fetch("http://localhost:8000/contacts", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -24,7 +25,7 @@ export const ContactProvider = (props) => {
     }
 
     const editContact = contact => {
-        return fetch(`http://localhost:8088/contacts/${contact.id}`,{
+        return fetch(`http://localhost:8000/contacts/${contact.id}`,{
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -34,7 +35,7 @@ export const ContactProvider = (props) => {
     }
 
     const getContact = contactId => {
-        return fetch(`http://localhost:8088/contacts/${contactId}`) 
+        return fetch(`http://localhost:8000/contacts/${contactId}`) 
             .then(res => res.json())
             .then(setCurrentContact)
         

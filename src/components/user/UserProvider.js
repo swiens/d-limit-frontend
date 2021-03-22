@@ -6,8 +6,8 @@ export const UserProvider = (props) => {
     const [user, setUser] = useState({})
     
     const getUser = () => {
-        const userId = localStorage.getItem("app_user_id")
-        return fetch(`http://localhost:8088/users/${userId}`)
+        const userId = localStorage.getItem("lu_token")
+        return fetch(`http://localhost:8000/users/${userId}`)
             .then(res => res.json())
             .then(setUser)
     }
