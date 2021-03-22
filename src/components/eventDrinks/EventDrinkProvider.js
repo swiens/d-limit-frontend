@@ -8,16 +8,20 @@ export const EventDrinkProvider = (props) => {
   const [drinks, setDrinks] = useState([]);
   const [events, setEvents] = useState([]);
   const [event, setEvent] = useState({});
-  
+
   const authToken = localStorage.getItem("lu_token")
 
   const getEventDrinks = (eventId) => {
-    return fetch(`http://localhost:8000/eventDrinks?eventId=${eventId}`)
+    return fetch(`http://localhost:8000/eventDrinks?event=${eventId}`, {
+      headers: {
+        Authorization: `Token ${authToken}`
+      }
+    })
       .then((res) => res.json())
       .then(setEventDrinks);
   };
   const getEvents = () => {
-    return fetch(`http://localhost:8000/events`, {
+    return fetch("http://localhost:8000/events", {
       headers: {
         Authorization: `Token ${authToken}`
       }
@@ -26,7 +30,11 @@ export const EventDrinkProvider = (props) => {
       .then(setEvents);
   };
   const getDrinks = () => {
-    return fetch("http://localhost:8000/drinks")
+    return fetch("http://localhost:8000/drinks", {
+      headers: {
+        Authorization: `Token ${authToken}`
+    }
+  })
       .then((res) => res.json())
       .then(setDrinks);
   };
@@ -35,6 +43,7 @@ export const EventDrinkProvider = (props) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Token ${authToken}`
       },
       body: JSON.stringify({
         userId: parseInt(localStorage.getItem("lu_token")),
@@ -53,6 +62,7 @@ export const EventDrinkProvider = (props) => {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+          Authorization: `Token ${authToken}`
       },
       body: JSON.stringify({
         endTime: moment.now(),
