@@ -27,7 +27,7 @@ export const ResultsPage = (props) => {
     //this is where i will do my calculations
     // get hours since event started 
     const now = moment()
-    const startTime = moment(parseInt(event.startTime))
+    const startTime = moment(event.start_time)
     const timeSinceEventInHours = now.diff(startTime, "hours", true)
     // according to Widmark calculation. Metabolising rate is -0.015 every hour that goes by.
     const bacTimeAdjust = 0.015

@@ -9,7 +9,7 @@ export const ContactList = props => {
     useEffect(() => {
         getContacts()
     }, [])
-
+console.log(contacts)
     return (
         <div className="contacts">
             <h1 className="contacts-title">Contacts</h1>
@@ -27,7 +27,7 @@ export const ContactList = props => {
                     contacts.map(contact => {
                         return <Link key={contact.id} to={`/contacts/${contact.id}`}>
                             <h3>{contact.name}</h3>
-                            <h3>{contact.phoneNumber}</h3>
+                            <h3>{contact.phone}</h3>
                         </Link>
                     })
                 }

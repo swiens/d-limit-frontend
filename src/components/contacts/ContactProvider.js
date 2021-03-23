@@ -2,23 +2,29 @@ import React, { useState, useEffect } from "react"
 
 export const ContactContext = React.createContext()
 
+const authToken = localStorage.getItem("lu_token")
+
 export const ContactProvider = (props) => {
     const [contacts, setContacts] = useState([])
     const [currentContact, setCurrentContact] = useState([])
 
     const getContacts = () => {
         const user = parseInt(localStorage.getItem("lu_token"))
-        return fetch(`http://localhost:8000/contacts?userId=${user}`)
+        return fetch(`http://localhost:8000/contacts?userId=${user}`, {
+            headers: {
+                Authorization: `Token ${authToken}`
+            }
+        })
             .then(res => res.json())
             .then(setContacts)
     }
-    console.log(getContacts)
 
     const addContact = contact => {
         return fetch("http://localhost:8000/contacts", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                Authorization: `Token ${authToken}`
             },
             body: JSON.stringify(contact)
         })
@@ -28,14 +34,19 @@ export const ContactProvider = (props) => {
         return fetch(`http://localhost:8000/contacts/${contact.id}`,{
             method: "PUT",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                Authorization: `Token ${authToken}`
             },
             body: JSON.stringify(contact)
         })
     }
 
     const getContact = contactId => {
-        return fetch(`http://localhost:8000/contacts/${contactId}`) 
+        return fetch(`http://localhost:8000/contacts/${contactId}`, {
+            headers: {
+                Authorization: `Token ${authToken}`
+            }
+        }) 
             .then(res => res.json())
             .then(setCurrentContact)
         

@@ -17,9 +17,8 @@ export const DrinkingPage = (props) => {
         const drinkId = parseInt(event.target.id)
         
         const newEventDrink = {
-            drinkId: drinkId,
-            eventId: eventId,
-            timeDrank: moment.now()  
+            drink_id: drinkId,
+            event_id: eventId,
         }
         addEventDrink(newEventDrink)
     

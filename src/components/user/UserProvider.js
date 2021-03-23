@@ -4,10 +4,15 @@ export const UserContext = React.createContext()
 
 export const UserProvider = (props) => {
     const [user, setUser] = useState({})
-    
+
+    const authToken = localStorage.getItem("lu_token")
+
     const getUser = () => {
-        const userId = localStorage.getItem("lu_token")
-        return fetch(`http://localhost:8000/users/${userId}`)
+        return fetch(`http://localhost:8000/drinkers/1`, {
+            headers: {
+                Authorization: `Token ${authToken}`
+            }
+        })
             .then(res => res.json())
             .then(setUser)
     }

@@ -45,11 +45,6 @@ export const EventDrinkProvider = (props) => {
         "Content-Type": "application/json",
         Authorization: `Token ${authToken}`
       },
-      body: JSON.stringify({
-        userId: parseInt(localStorage.getItem("lu_token")),
-        startTime: moment.now(),
-        endTime: null,
-      }),
     }).then((res) => res.json())
       .then((event) => {
         localStorage.setItem("currentEvent",event.id)
@@ -76,7 +71,11 @@ export const EventDrinkProvider = (props) => {
 
   const getEvent = () => {
     const currentEventId = localStorage.getItem("currentEvent")
-    return fetch(`http://localhost:8000/events/${currentEventId}`)
+    return fetch(`http://localhost:8000/events/${currentEventId}`, {
+      headers: {
+        Authorization: `Token ${authToken}`
+      }
+    })
         .then(res => res.json())
         .then(setEvent)
 }
@@ -86,9 +85,16 @@ export const EventDrinkProvider = (props) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Token ${authToken}`
       },
       body: JSON.stringify(drink),
-    }).then(getEventDrinks);
+
+    }).then(res => res.json())
+      .then((eventDrink) => {
+      console.log(eventDrink)
+      getEventDrinks(eventDrink.event.id)
+    
+    });
   };
 
   const deleteEventDrink = (eventDrinkId, eventId) => {
@@ -96,6 +102,7 @@ export const EventDrinkProvider = (props) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Token ${authToken}`
       },
     }).then(() => getEventDrinks(eventId));
   };

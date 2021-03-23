@@ -20,9 +20,8 @@ export const EditContactForm = (props) => {
     e.preventDefault();
     editContact({
       name: name.current.value,
-      phoneNumber: phoneNumber.current.value,
-      id: currentContact.id,
-      userId: parseInt(localStorage.getItem("app_user_id"))
+      phone: phoneNumber.current.value,
+      id: currentContact.id
     })
       .then(() => props.history.push("/contacts"))
   }
@@ -60,12 +59,12 @@ export const EditContactForm = (props) => {
           />
         </fieldset>
         <fieldset>
-          <label htmlFor="phoneNumber"> Phone Number </label>
+          <label htmlFor="phone"> Phone Number </label>
           <input
             ref={phoneNumber}
             type="text"
-            name="phoneNumber"
-            value={currentContact.phoneNumber}
+            name="phone"
+            value={currentContact.phone}
             className="form-control"
             placeholder="Phone Number"
             onChange={handleControlledInputChange}

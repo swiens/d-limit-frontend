@@ -27,7 +27,7 @@ export const DrinkList = (props) => {
   const continueDrinkingButton = () => {
     return props.history.push(`/drinking/${eventId}`);
   };
-
+console.log(eventDrinks)
   if (drinks.length === 0) return false;
   return (
     <div>
@@ -37,16 +37,13 @@ export const DrinkList = (props) => {
 
       <div className="drinks">
         {eventDrinks.map((currentEventDrink) => {
-          const foundDrink = drinks.find((currentDrink) => {
-            return currentDrink.id === currentEventDrink.drinkId;
-          });
           return (
             <div>
               <hr />
-              <div>{foundDrink.type} </div>
+              <div>{currentEventDrink.drink.type} </div>
               <div>
                 
-                {moment(parseInt(currentEventDrink.timeDrank)).format(
+                {moment(currentEventDrink.time_drank).format(
                   "LTS"
                 )}
               </div>
