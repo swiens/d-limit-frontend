@@ -52,25 +52,23 @@ export const EventDrinkProvider = (props) => {
       })
     
   };
-  const endEvent = (eventId) => {
-    return fetch(`http://localhost:8000/events/${eventId}`, {
-      method: "PATCH",
+  const endEvent = (eventId, departure) => {
+    return fetch(`http://localhost:8000/events/${eventId}/end_event`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
           Authorization: `Token ${authToken}`
       },
       body: JSON.stringify({
-        endTime: moment.now(),
+        departure: departure,
       }),
-    }).then((res) => res.json())
-      .then(() => {
+    }).then(() => {
         localStorage.removeItem("currentEvent") 
       })
     
   };
 
-  const getEvent = () => {
-    const currentEventId = localStorage.getItem("currentEvent")
+  const getEvent = (currentEventId = localStorage.getItem("currentEvent")) => {
     return fetch(`http://localhost:8000/events/${currentEventId}`, {
       headers: {
         Authorization: `Token ${authToken}`

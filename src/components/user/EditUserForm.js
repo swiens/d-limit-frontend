@@ -1,27 +1,27 @@
 import React, { useRef, useContext, useEffect } from "react";
-import {ContactContext} from "../contacts/ContactProvider"
-//import "./user.css"
+import {UserContext} from "./UserProvider"
 
-export const EditContactForm = (props) => {
+export const EditUserForm = (props) => {
   //pulling functions and data out of my provider
-  const {editContact, currentContact, getContact, setCurrentContact} = useContext(ContactContext)
-  
+  const {user, getUser, editUser, setUser} = useContext(UserContext)
+  console.log(user)
   //reffs that will reference my inputs so i can acces their values
-  const name = useRef(null);
-  const phoneNumber = useRef(null);
+  const age = useRef(1);
+  const weight = useRef(null);
+  const height = useRef(null);
 
   // useEffect will run one time when the page loads because im passing empty array to it
   useEffect(() => {
-      getContact(props.match.params.contactId)
+      getUser()
   }, [])
 
   //function i will use to actually update the current contact
-  const editCurrentContact = (e) => {
+  const editCurrentUser = (e) => {
     e.preventDefault();
-    editContact({
-      name: name.current.value,
-      phoneNumber: phoneNumber.current.value,
-      id: currentContact.id
+    editUser({
+      age: age.current.value,
+      weight: weight.current.value,
+      height: height.current.value
     })
       .then(() => props.history.push("/"))
   }
@@ -31,49 +31,60 @@ export const EditContactForm = (props) => {
         When changing a state object or array, always create a new one
         and change state instead of modifying current one
     */
-    const newCurrentContact = Object.assign({}, currentContact)
-    newCurrentContact[event.target.name] = event.target.value
-    setCurrentContact(newCurrentContact)
-}
-
-  console.log(currentContact)
-
+    const newUser = Object.assign({}, user)
+    newUser[event.target.name] = event.target.value
+    setUser(newUser)
+  }
   return (
     <main style={{ textAlign: "center" }}>
-      <form className="contact--form" onSubmit={editCurrentContact}>
+      <form className="contact--form" onSubmit={editCurrentUser}>
         <h1 className="h3 mb-3 font-weight-normal">
-          Please Edit Contact
+          Please Edit Your Profile
         </h1>
         <fieldset>
-          <label htmlFor="name"> Name </label>
+          <label htmlFor="age"> Age </label>
           <input
-            ref={name}
+            ref={age}
             type="text"
-            name="name"
-            value={currentContact.name}
-            onChange={handleControlledInputChange}
+            name="age"
+            value={user.age}
             className="form-control"
-            placeholder="Name"
-            required
-            autoFocus
-          />
-        </fieldset>
-        <fieldset>
-          <label htmlFor="phoneNumber"> Phone Number </label>
-          <input
-            ref={phoneNumber}
-            type="text"
-            name="phoneNumber"
-            value={currentContact.phoneNumber}
-            className="form-control"
-            placeholder="Phone Number"
+            placeholder="Age"
             onChange={handleControlledInputChange}
             required
             autoFocus
           />
         </fieldset>
         <fieldset>
-          <button type="submit"> Edit Contact </button>
+          <label htmlFor="weight"> Weight </label>
+          <input
+            ref={weight}
+            type="text"
+            name="weight"
+            value={user.weight}
+            className="form-control"
+            placeholder="weight"
+            onChange={handleControlledInputChange}
+            required
+            autoFocus
+          />
+        </fieldset>
+        <fieldset>
+          <label htmlFor="height"> Height </label>
+          <input
+            ref={height}
+            type="text"
+            name="height"
+            value={user.height}
+            className="form-control"
+            placeholder="height"
+            onChange={handleControlledInputChange}
+            required
+            autoFocus
+          />
+        </fieldset>
+        <fieldset>
+          <button type="submit"> Edit Profile </button>
         </fieldset>
       </form>
     </main>

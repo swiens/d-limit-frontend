@@ -35,7 +35,10 @@ function App() {
                   <Route exact path="/drinking/:eventId(\d+)" render={(props) => <DrinkingPage {...props} />} />
                   <Route path="/drinking/drinks/:eventId(\d+)" render={(props) => <DrinkList {...props}/>} />
                   <UserProvider>
-                    <Route path="/drinking/results/:eventId(\d+)" render={(props) => <ResultsPage {...props}/>} />
+                    <ContactProvider>
+                      <Route path="/drinking/results/:eventId(\d+)" render={(props) => <ResultsPage {...props}/>} />
+                    </ContactProvider>
+                    <Route path="/edit/profile" render={(props) => <EditUserForm {...props}/>} />
                   </UserProvider>
                   <Route exact path="/" render={(props) => <EventList {...props}/>} />
                   <Route exact path="/event/detail/:eventId(\d+)" render={(props) => <EventDetailsPage {...props} />} />

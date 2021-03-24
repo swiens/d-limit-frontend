@@ -23,7 +23,7 @@ export const Home = (props) => {
     <section>
       <h1 className="home-title">Home Page</h1>
       <div>
-          <Link className="edit-profile-button" to="/edit-profile">Edit Profile</Link>
+          <Link className="edit-profile-button" to="/edit/profile">Edit Profile</Link>
       </div>
       <div>
           <Link className="edit-contacts-button" to="/contacts">Edit Contacts</Link>

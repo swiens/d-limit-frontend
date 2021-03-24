@@ -13,13 +13,24 @@ export const UserProvider = (props) => {
                 Authorization: `Token ${authToken}`
             }
         })
-            .then(res => res.json())
+            .then(res => res.json()) 
             .then(setUser)
+    }
+
+    const editUser = drinker => {
+        return fetch(`http://localhost:8000/drinkers/1`,{
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Token ${authToken}`
+            },
+            body: JSON.stringify(drinker)
+        })
     }
 
     return(
         <UserContext.Provider value={{
-            getUser, user
+            getUser, user, editUser, setUser
         }}>
             {props.children}
         </UserContext.Provider>

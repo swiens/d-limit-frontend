@@ -9,8 +9,7 @@ export const ContactProvider = (props) => {
     const [currentContact, setCurrentContact] = useState([])
 
     const getContacts = () => {
-        const user = parseInt(localStorage.getItem("lu_token"))
-        return fetch(`http://localhost:8000/contacts?userId=${user}`, {
+        return fetch(`http://localhost:8000/contacts`, {
             headers: {
                 Authorization: `Token ${authToken}`
             }
