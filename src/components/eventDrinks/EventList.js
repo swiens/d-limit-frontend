@@ -13,7 +13,6 @@ export const EventList = () => {
     // useEffect(() => {
 
     // }, [events])
-console.log(events)
     return(
         <div className="events">
         <h3 className="previous-events"> Previous Events </h3>

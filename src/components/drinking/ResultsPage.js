@@ -63,7 +63,7 @@ export const ResultsPage = (props) => {
     setDeparture(departureType)
     window.open(link)
   }
-
+console.log(contacts)
   if(result<0.08) {
       return(
         <section>

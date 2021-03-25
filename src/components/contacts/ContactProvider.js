@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react"
 
 export const ContactContext = React.createContext()
 
-const authToken = localStorage.getItem("lu_token")
-
 export const ContactProvider = (props) => {
+    const authToken = localStorage.getItem("lu_token")
     const [contacts, setContacts] = useState([])
     const [currentContact, setCurrentContact] = useState([])
 
