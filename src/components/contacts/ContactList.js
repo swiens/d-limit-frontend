@@ -9,7 +9,6 @@ export const ContactList = props => {
     useEffect(() => {
         getContacts()
     }, [])
-console.log(contacts)
     return (
         <div className="contacts">
             <h1 className="contacts-title">Contacts</h1>
